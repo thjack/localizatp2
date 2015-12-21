@@ -2,12 +2,12 @@
 <widget xmlns   = "http://www.w3.org/ns/widgets"
             xmlns:gap   = "http://phonegap.com/ns/1.0"
             id          = "com.phonegap.jvenegasperu.emapa1"
-            versionCode = "3" 
+            versionCode = "4" 
             version     = "3.0.1" >
 
     <!-- versionCode is optional and Android only -->
 
-    <name>Localizador Emapa</name>
+    <name>Localizador</name>
 
     <description>
         Permite ubicar a los usuarios cercanos a su posicion
