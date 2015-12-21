@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>    
+    <head>
+        <title>Emapa</title>
+
+        <link rel="stylesheet" href="css/themes/emapa.min.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.structure-1.3.2.min.css" /> 
+
+        <!-- script type="text/javascript" charset="utf-8" src="cordova.js"></script -->
+        <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>        
+
+        <script src="js/jquery-1.9.1.min.js"></script>          
+
+        <script src="minify/js1.js" type="text/javascript"></script>                            
+
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>        
+        <script type="text/javascript" src="js/gmaps.js"></script>
+
+        <script src="js/jquery.mobile-1.3.2.min.js"></script>   
+        
+        <script src="minify/js2.js" type="text/javascript"></script>                
+
+        <script>
+
+            function showConfirm() {
+                navigator.notification.confirm(
+                        '¿Seguro que quieres cerrar la aplicación?', // mensaje a mostrar
+                        exitFromApp, // callback a invocar cuando el botón es presionado
+                        'Salir', // titulo de la ventana
+                        'Cancelar,Si' // etiquetas de los botones
+                        );
+            }
+
+            function exitFromApp(buttonIndex) {
+                if (buttonIndex === 2) {
+                    navigator.app.exitApp();
+                }
+            }
+
+
+            var map;
+            var ancho = $(window).height();
+            ancho = ancho - 100;
+            var ayuda = String(ancho) + "px";
+            var latitud;
+            var longitud;
+
+            var P1, P2, P3, P4, P5, P6, P7;
+
+            function mapita(p1, p2, p3, p4, p5, p6, p7) {
+
+                document.getElementById("map").style.display = "block";
+                document.getElementById("map").style.height = ayuda;
+
+                map = new GMaps({
+                    div: '#map',
+                    lat: p3,
+                    lng: p4,
+                    zoom: 15,
+                    zoomControl: true,
+                    zoomControlOpt: {
+                        style: 'SMALL',
+                        position: 'TOP_RIGHT'
+                    },
+                    panControl: true,
+                    streetViewControl: true,
+                    mapTypeControl: false
+                });
+
+                // lugares de pago 
+                map.addMarker({
+                    lat: p2, //yy, //-8.1057525, 
+                    lng: p1, //xx, //-79.0000976,
+                    icon: "img/usuario.png",
+                    title: 'El usuario',
+                    infoWindow: {
+                        content: '<strong>' + p6 + '</strong><br>' + p5 + ' - Dir: ' + p7 + ''
+                    }
+                });
+
+                map.setCenter(p3, p4);
+                map.addMarker({
+                    lat: p3,
+                    lng: p4,
+                    icon: "img/tu.png",
+                    title: 'Tu',
+                    infoWindow: {
+                        content: 'Tu ubicación Actualmente'
+                    }
+
+                });
+
+                map.drawRoute({//posicion del usuario
+                    origin: [p3, p4],
+                    //destination: [ -8.1057525, -79.0000976],
+                    destination: [p2, p1],
+                    travelMode: 'driving',
+                    strokeColor: '#296fb7',
+                    strokeOpacity: 0.6,
+                    strokeWeight: 6
+                });
+            }
+
+
+            function funca(lat, long, lat2, long2, id, nomcli, vgral) {
+                               
+                nomcli = nomcli.replace(/%20/gi, ' ');
+                nomcli = nomcli.replace(/%27/gi, "'");
+                nomcli = nomcli.replace(/%26/gi, "&");
+                
+                vgral = vgral.replace(/%20/gi, ' ');
+                vgral = vgral.replace(/%27/gi, "'");
+                vgral = vgral.replace(/%3A/gi, ":");
+                
+                P1 = lat;
+                P2 = long;
+                P3 = lat2;
+                P4 = long2;
+                P5 = id;
+                P6 = nomcli;
+                P7 = vgral;
+                
+                $.mobile.changePage("#pag-mapa", {
+                    transition: "slide",
+                    reverse: false,
+                    changeHash: true
+                });
+
+            }
+
+            $(document).on("pageshow", "#pag-mapa", function () {                
+                mapita(P1, P2, P3, P4, P5, P6, P7);
+            });
+
+            $(document).ready(function () {
+                //alert('Ejecutando document on ready');
+            });
+
+            if (localStorage.getItem('listView') === "undefined") {
+            } else {
+                
+                //llenalista();
+                
+            }
+
+        </script>       
+
+        <style>
+            body
+            {
+                font-family: Helvetica, Arial, sans-serif;
+                margin:1em;
+            }
+
+            #map
+            {
+                display: block;
+                width: 94%;
+                height: 550px;
+                margin: 2em auto;
+                /*margin: 3em auto;*/
+
+                -moz-box-shadow: 0px 5px 10px #ccc;
+                -webkit-box-shadow: 0px 5px 10px #ccc;
+                box-shadow: 0px 5px 10px #ccc;                
+                
+            }
+        </style>
+
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body onload="onBodyLoad();">
+
+        <!--- Pagina Login de Usuarios -->        
+        <div data-role="page" id="usuarios-login">
+            <div data-role="header" data-position="fixed">
+                <h1><img src="img/logo_1.png" alt="EMAPA SA" height="45"></h1>                
+            </div>   
+            <div data-role="content">
+                <div data-role="fieldcontain">
+                    <input id="txt-user" name="username" type="text" tabindex="1" placeholder="Usuario" required>
+                </div>
+                <div data-role="fieldcontain">
+                    <input id="txt-pass" name="userpass" type="password" tabindex="2" placeholder="Contraseña" required>
+                </div>
+                <button id="login-button" value="Login" onclick="l1()" tabindex="3">Login</button>
+            </div>
+        </div>        
+
+        <!--- Usuario Logueado -->
+        <div data-role="page" id="pag-usuarios-registrados"  data-dom-cache="true">       
+            <div data-role="header" data-position="fixed">
+                <h1><img src="img/logo_1.png" alt="EMAPA SA" height="45"></h1>  
+                <a href="#panel" id="abre_panel" class="panel-btn"></a>
+                <a onclick="showConfirm(); return false;" href="#" data-icon="delete" data-iconpos="notext">Salir</a>                                
+                
+            </div>   
+            <div data-role="panel" id="panel" data-position-fixed="true" data-position="left" data-display="overlay" >
+                <ul data-role="listview">
+                    <li data-icon="carat-r" id="usuario" ><img src="img/usuariok.png" alt="usuario" id="imgusuario"><h5 id="usua">Usuario</h5></li>
+                    <li data-icon="carat-r"><img alt="ubicacion" src="img/ubiUsuario.png"><h3 id="mprecision" >Aun no ubicado</h3></li>
+                    <li data-icon="carat-r"><img alt="conex" src="img/conex.png"><h3 id="mconex" >Tipo de Conex</h3></li>                    
+                    <!-- li data-icon="carat-r"><a href="#" rel="external"><img src="img/operador.png" alt="ubicar">Menu 3</a></li -->                    
+                </ul>
+            </div>
+            <div data-role="content">
+
+                <!-- ul id="list_view" data-role="listview"  data-theme="a"></ul -->
+
+                <!-- ul id="list_view" data-role="listview"  data-theme="a" data-filter="true" data-filter-placeholder="Ubiquese luego busque usuario  ..."></ul -->
+
+                <ul id="list_view" data-role="listview"  data-theme="a" data-inset="true" data-filter="true" data-filter-placeholder="Ubiquese luego busque usuario  ..."></ul>
+
+                <!-- ul id="mylistview" data-role="listview" data-inset="true" data-autodividers="true" data-filter="true" data-filter-placeholder="Digite Usuario ...">			
+                    <li><a href="#verDetalle" onclick="mostrar(1)"><img id="img-1" src="" width="100" height="100"/><h5 id="titulo-1"></h5>juan perez</a></li>
+                    <li><a href="#verDetalle" onclick="mostrar(2)"><img id="img-2" src="" width="100" height="100"/><h5 id="titulo-2"></h5>marco rodirgue</a></li>			
+                </ul -->
+
+            </div>
+            <div data-role="footer" data-position="fixed">
+                <center>
+                    <div data-role="controlgroup" data-type="horizontal">                                                
+                        <div data-role="button" id="wraperurba"><div id="urba">Aun no ubicado...</div></div>
+                        <a href="#" data-role="button" onclick="BusSum()" data-icon="home">Ubicar</a>                                                
+                    </div>  
+                </center>
+            </div>
+        </div>
+
+        <!--- Mapa -->
+        <div data-role="page" id="pag-mapa" data-theme="a" >       
+            <div id="map"></div>
+            <div data-role="footer" data-position="fixed">
+                <center>
+                    <div data-role="controlgroup" data-type="horizontal">                    
+                        <a href="index.html#pag-usuarios-registrados" data-role="button" data-icon="back" data-rel="back">Volver</a>
+                        <!-- a href="#" data-role="button" data-icon="home">Mapa</a -->
+                    </div>  
+                </center>
+            </div>
+        </div>        
+
+    </body>
+</html>
