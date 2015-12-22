@@ -58,3 +58,6 @@ js/_jq1.js
 js/license.inc
 js/compress_js.php
 bitacora.php
+css/index.css
+js/_mjq3.js
+minifycss.php
