@@ -1,1 +1,1 @@
-body{font-family: Helvetica, Arial, sans-serif;margin:1em}#map{display: block;width: 94%;height: 550px;margin: 2em auto;-moz-box-shadow: 0px 5px 10px #ccc;-webkit-box-shadow: 0px 5px 10px #ccc;box-shadow: 0px 5px 10px #ccc}
+body{font-family: Helvetica, Arial, sans-serif;margin:1em}.cenapal{position:absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);-webkit-transform: translate(-50%,-50%)}#map{display: block;width: 94%;height: 550px;margin: 2em auto;-moz-box-shadow: 0px 5px 10px #ccc;-webkit-box-shadow: 0px 5px 10px #ccc;box-shadow: 0px 5px 10px #ccc}
