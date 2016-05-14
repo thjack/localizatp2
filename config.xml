@@ -42,6 +42,9 @@
     <preference name="SplashScreen" value="screem" />
     <preference name="SplashScreenDelay" value="10000"/>
     
+    
+    
+    <gap:plugin name="org.apache.cordova.dialogs" />
     <gap:plugin name="org.apache.cordova.device" />
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
