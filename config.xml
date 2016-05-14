@@ -43,8 +43,6 @@
     <preference name="SplashScreenDelay" value="10000"/>
     
     
-    
-    <!-- gap:plugin name="org.apache.cordova.dialogs" / -->
     <gap:plugin name="org.apache.cordova.device" />
     <gap:plugin name="org.apache.cordova.battery-status" />
     <gap:plugin name="org.apache.cordova.camera" />
@@ -115,8 +113,10 @@
     <!--access origin="*"/ -->  
     
     
-    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
-    <access origin="*"/>
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" />    
+    <allow-navigation href="*" />
+    <allow-intent href="*" />
+    <access origin="*" />
     
     <!--  
       <access origin="http://phonegap.com" />          - allow any secure requests to http://phonegap.com/  
