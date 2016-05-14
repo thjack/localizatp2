@@ -2,7 +2,7 @@
 <widget xmlns   = "http://www.w3.org/ns/widgets"
             xmlns:gap   = "http://phonegap.com/ns/1.0"
             id          = "com.phonegap.jvenegasperu.emapa1"
-            versionCode = "4" 
+            versionCode = "5" 
             version     = "3.0.1" >
 
     <!-- versionCode is optional and Android only -->
@@ -21,7 +21,7 @@
     <access origin="*.googleapis.com"/>
     <access origin="*.gstatic.com"/>
             
-    <preference name="phonegap-version" value="3.7.0" />
+    <preference name="phonegap-version" value="4.1.1" />
     
     <preference name="permissions" value="none" />    
     <preference name="orientation" value="default" />
@@ -59,6 +59,8 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
     <gap:plugin name="org.apache.cordova.vibration" />    
+    
+    <!-- gap:plugin name="com.phonegap.plugins.pushplugin" spec="2.4.0" source="pgb" / -->
 
     <!-- Third party plugins -->  
     <!-- A list of available plugins are available at https://build.phonegap.com/plugins -->  

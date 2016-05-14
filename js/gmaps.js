@@ -10,56 +10,42 @@
     root.GMaps = factory();
   }
 }(this, function() {
-
-/*!
- * GMaps.js v0.4.21
- * http://hpneo.github.com/gmaps/
+/* GMaps.js http://hpneo.github.com/gmaps/
  *
  * Copyright 2015, Gustavo Leon
  * Released under the MIT License.
  */
-
 var extend_object = function(obj, new_obj) {
   var name;
-
   if (obj === new_obj) {
     return obj;
   }
-
   for (name in new_obj) {
     obj[name] = new_obj[name];
   }
-
   return obj;
 };
-
 var replace_object = function(obj, replace) {
   var name;
-
   if (obj === replace) {
     return obj;
   }
-
   for (name in replace) {
     if (obj[name] != undefined) {
       obj[name] = replace[name];
     }
   }
-
   return obj;
 };
-
 var array_map = function(array, callback) {
   var original_callback_params = Array.prototype.slice.call(arguments, 2),
       array_return = [],
       array_length = array.length,
       i;
-
   if (Array.prototype.map && array.map === Array.prototype.map) {
     array_return = Array.prototype.map.call(array, function(item) {
       var callback_params = original_callback_params.slice(0);
       callback_params.splice(0, 0, item);
-
       return callback.apply(this, callback_params);
     });
   }
@@ -70,36 +56,27 @@ var array_map = function(array, callback) {
       array_return.push(callback.apply(this, callback_params));
     }
   }
-
   return array_return;
 };
-
 var array_flat = function(array) {
   var new_array = [],
       i;
-
   for (i = 0; i < array.length; i++) {
     new_array = new_array.concat(array[i]);
   }
-
   return new_array;
 };
-
 var coordsToLatLngs = function(coords, useGeoJSON) {
   var first_coord = coords[0],
       second_coord = coords[1];
-
   if (useGeoJSON) {
     first_coord = coords[1];
     second_coord = coords[0];
   }
-
   return new google.maps.LatLng(first_coord, second_coord);
 };
-
 var arrayToLatLng = function(coords, useGeoJSON) {
   var i;
-
   for (i = 0; i < coords.length; i++) {
     if (!(coords[i] instanceof google.maps.LatLng)) {
       if (coords[i].length > 0 && typeof(coords[i][0]) === "object") {
@@ -110,24 +87,18 @@ var arrayToLatLng = function(coords, useGeoJSON) {
       }
     }
   }
-
   return coords;
 };
-
 var getElementsByClassName = function (class_name, context) {
-
     var element,
         _class = class_name.replace('.', '');
-
     if ('jQuery' in this && context) {
         element = $("." + _class, context)[0];
     } else {
         element = document.getElementsByClassName(_class)[0];
     }
     return element;
-
 };
-
 var getElementById = function(id, context) {
   var element,
   id = id.replace('#', '');
@@ -137,47 +108,35 @@ var getElementById = function(id, context) {
   } else {
     element = document.getElementById(id);
   };
-
   return element;
 };
-
 var findAbsolutePosition = function(obj)  {
   var curleft = 0,
       curtop = 0;
-
   if (obj.offsetParent) {
     do {
       curleft += obj.offsetLeft;
       curtop += obj.offsetTop;
     } while (obj = obj.offsetParent);
   }
-
   return [curleft, curtop];
 };
-
 var GMaps = (function(global) {
   "use strict";
-
   if (!(typeof window.google === 'object' && window.google.maps)) {
     if (typeof window.console === 'object' && window.console.error) {
       console.error('Google Maps API is required. Please register the following JavaScript library https://maps.googleapis.com/maps/api/js.');
     }
-
     return function() {};
   }
-
   var doc = document;
-
   var GMaps = function(options) {
     if (!this) return new GMaps(options);
-
     options.zoom = options.zoom || 15;
     options.mapType = options.mapType || 'roadmap';
-
     var valueOrDefault = function(value, defaultValue) {
       return value === undefined ? defaultValue : value;
     };
-
     var self = this,
         i,
         events_that_hide_context_menu = [
@@ -221,7 +180,6 @@ var GMaps = (function(global) {
           streetViewControl: streetViewControl,
           overviewMapControl: overviewMapControl
         };
-
       if (typeof(options.el) === 'string' || typeof(options.div) === 'string') {
 
           if (identifier.indexOf("#") > -1) {
@@ -229,18 +187,14 @@ var GMaps = (function(global) {
           } else {
               this.el = getElementsByClassName.apply(this, [identifier, options.context]);
           }
-
       } else {
           this.el = identifier;
       }
-
     if (typeof(this.el) === 'undefined' || this.el === null) {
       throw 'No element defined.';
     }
-
     window.context_menu = window.context_menu || {};
     window.context_menu[self.el.id] = {};
-
     this.controls = [];
     this.overlays = [];
     this.layers = []; // array with kml/georss and fusiontables layers, can be as many
@@ -253,40 +207,29 @@ var GMaps = (function(global) {
     this.overlay_el = null;
     this.zoom = options.zoom;
     this.registered_events = {};
-
     this.el.style.width = options.width || this.el.scrollWidth || this.el.offsetWidth;
     this.el.style.height = options.height || this.el.scrollHeight || this.el.offsetHeight;
-
     google.maps.visualRefresh = options.enableNewStyle;
-
     for (i = 0; i < options_to_be_deleted.length; i++) {
       delete options[options_to_be_deleted[i]];
     }
-
     if(options.disableDefaultUI != true) {
       map_base_options = extend_object(map_base_options, map_controls_options);
     }
-
     map_options = extend_object(map_base_options, options);
-
     for (i = 0; i < events_that_hide_context_menu.length; i++) {
       delete map_options[events_that_hide_context_menu[i]];
     }
-
     for (i = 0; i < events_that_doesnt_hide_context_menu.length; i++) {
       delete map_options[events_that_doesnt_hide_context_menu[i]];
     }
-
     this.map = new google.maps.Map(this.el, map_options);
-
     if (markerClustererFunction) {
       this.markerClusterer = markerClustererFunction.apply(this, [this.map]);
     }
-
     var buildContextMenuHTML = function(control, e) {
       var html = '',
           options = window.context_menu[self.el.id][control];
-
       for (var i in options){
         if (options.hasOwnProperty(i)) {
           var option = options[i];
@@ -294,20 +237,14 @@ var GMaps = (function(global) {
           html += '<li><a id="' + control + '_' + i + '" href="#">' + option.title + '</a></li>';
         }
       }
-
       if (!getElementById('gmaps_context_menu')) return;
-
       var context_menu_element = getElementById('gmaps_context_menu');
-
       context_menu_element.innerHTML = html;
-
       var context_menu_items = context_menu_element.getElementsByTagName('a'),
           context_menu_items_count = context_menu_items.length,
           i;
-
       for (i = 0; i < context_menu_items_count; i++) {
         var context_menu_item = context_menu_items[i];
-
         var assign_menu_item_action = function(ev){
           ev.preventDefault();
 
@@ -1961,31 +1898,22 @@ GMaps.prototype.createPanorama = function(streetview_options) {
   }
 
   this.panorama = GMaps.createPanorama(streetview_options);
-
   this.map.setStreetView(this.panorama);
-
   return this.panorama;
 };
-
 GMaps.createPanorama = function(options) {
   var el = getElementById(options.el, options.context);
-
   options.position = new google.maps.LatLng(options.lat, options.lng);
-
   delete options.el;
   delete options.context;
   delete options.lat;
   delete options.lng;
-
   var streetview_events = ['closeclick', 'links_changed', 'pano_changed', 'position_changed', 'pov_changed', 'resize', 'visible_changed'],
       streetview_options = extend_object({visible : true}, options);
-
   for (var i = 0; i < streetview_events.length; i++) {
     delete streetview_options[streetview_events[i]];
   }
-
   var panorama = new google.maps.StreetViewPanorama(el, streetview_options);
-
   for (var i = 0; i < streetview_events.length; i++) {
     (function(object, name) {
       if (options[name]) {
@@ -1995,20 +1923,15 @@ GMaps.createPanorama = function(options) {
       }
     })(panorama, streetview_events[i]);
   }
-
   return panorama;
 };
-
 GMaps.prototype.on = function(event_name, handler) {
   return GMaps.on(event_name, this, handler);
 };
-
 GMaps.prototype.off = function(event_name) {
   GMaps.off(event_name, this);
 };
-
 GMaps.custom_events = ['marker_added', 'marker_removed', 'polyline_added', 'polyline_removed', 'polygon_added', 'polygon_removed', 'geolocated', 'geolocation_failed'];
-
 GMaps.on = function(event_name, object, handler) {
   if (GMaps.custom_events.indexOf(event_name) == -1) {
     if(object instanceof GMaps) object = object.map; 
@@ -2019,14 +1942,11 @@ GMaps.on = function(event_name, object, handler) {
       handler : handler,
       eventName : event_name
     };
-
     object.registered_events[event_name] = object.registered_events[event_name] || [];
     object.registered_events[event_name].push(registered_event);
-
     return registered_event;
   }
 };
-
 GMaps.off = function(event_name, object) {
   if (GMaps.custom_events.indexOf(event_name) == -1) {
     if(object instanceof GMaps) object = object.map; 
@@ -2036,7 +1956,6 @@ GMaps.off = function(event_name, object) {
     object.registered_events[event_name] = [];
   }
 };
-
 GMaps.fire = function(event_name, object, scope) {
   if (GMaps.custom_events.indexOf(event_name) == -1) {
     google.maps.event.trigger(object, event_name, Array.prototype.slice.apply(arguments).slice(2));
@@ -2044,7 +1963,6 @@ GMaps.fire = function(event_name, object, scope) {
   else {
     if(event_name in scope.registered_events) {
       var firing_events = scope.registered_events[event_name];
-
       for(var i = 0; i < firing_events.length; i++) {
         (function(handler, scope, object) {
           handler.apply(scope, [object]);
@@ -2053,10 +1971,8 @@ GMaps.fire = function(event_name, object, scope) {
     }
   }
 };
-
 GMaps.geolocate = function(options) {
   var complete_callback = options.always || options.complete;
-
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       options.success(position);
@@ -2080,23 +1996,19 @@ GMaps.geolocate = function(options) {
     }
   }
 };
-
 GMaps.geocode = function(options) {
   this.geocoder = new google.maps.Geocoder();
   var callback = options.callback;
   if (options.hasOwnProperty('lat') && options.hasOwnProperty('lng')) {
     options.latLng = new google.maps.LatLng(options.lat, options.lng);
   }
-
   delete options.lat;
   delete options.lng;
   delete options.callback;
-  
   this.geocoder.geocode(options, function(results, status) {
     callback(results, status);
   });
 };
-
 if (typeof window.google === 'object' && window.google.maps) {
   //==========================
   // Polygon containsLatLng
@@ -2108,55 +2020,44 @@ if (typeof window.google === 'object' && window.google.maps) {
       var bounds = new google.maps.LatLngBounds();
       var paths = this.getPaths();
       var path;
-
       for (var p = 0; p < paths.getLength(); p++) {
         path = paths.getAt(p);
         for (var i = 0; i < path.getLength(); i++) {
           bounds.extend(path.getAt(i));
         }
       }
-
       return bounds;
     };
   }
-
   if (!google.maps.Polygon.prototype.containsLatLng) {
     // Polygon containsLatLng - method to determine if a latLng is within a polygon
     google.maps.Polygon.prototype.containsLatLng = function(latLng) {
       // Exclude points outside of bounds as there is no way they are in the poly
       var bounds = this.getBounds();
-
       if (bounds !== null && !bounds.contains(latLng)) {
         return false;
       }
-
       // Raycast point in polygon method
       var inPoly = false;
-
       var numPaths = this.getPaths().getLength();
       for (var p = 0; p < numPaths; p++) {
         var path = this.getPaths().getAt(p);
         var numPoints = path.getLength();
         var j = numPoints - 1;
-
         for (var i = 0; i < numPoints; i++) {
           var vertex1 = path.getAt(i);
           var vertex2 = path.getAt(j);
-
           if (vertex1.lng() < latLng.lng() && vertex2.lng() >= latLng.lng() || vertex2.lng() < latLng.lng() && vertex1.lng() >= latLng.lng()) {
             if (vertex1.lat() + (latLng.lng() - vertex1.lng()) / (vertex2.lng() - vertex1.lng()) * (vertex2.lat() - vertex1.lat()) < latLng.lat()) {
               inPoly = !inPoly;
             }
           }
-
           j = i;
         }
       }
-
       return inPoly;
     };
   }
-
   if (!google.maps.Circle.prototype.containsLatLng) {
     google.maps.Circle.prototype.containsLatLng = function(latLng) {
       if (google.maps.geometry) {
@@ -2167,24 +2068,19 @@ if (typeof window.google === 'object' && window.google.maps) {
       }
     };
   }
-
   google.maps.LatLngBounds.prototype.containsLatLng = function(latLng) {
     return this.contains(latLng);
   };
-
   google.maps.Marker.prototype.setFences = function(fences) {
     this.fences = fences;
   };
-
   google.maps.Marker.prototype.addFence = function(fence) {
     this.fences.push(fence);
   };
-
   google.maps.Marker.prototype.getId = function() {
     return this['__gm_id'];
   };
 }
-
 //==========================
 // Array indexOf
 // https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Array/indexOf

@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>    
-    <head>
+    <head class="cenapal">
         <title>Emapa</title>
 
         <link rel="stylesheet" href="css/themes/emapa.min.css" />
         <link rel="stylesheet" href="css/jquery.mobile.structure-1.3.2.min.css" /> 
-
-        <link rel="stylesheet" href="minify/index.css" />        
+        <link rel="stylesheet" href="minify/css1.css" />        
         
-        <!-- script type="text/javascript" charset="utf-8" src="cordova.js"></script -->
         <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>        
 
         <script src="js/jquery-1.9.1.min.js"></script>          
@@ -54,18 +52,50 @@
             </div>   
             <div data-role="panel" id="panel" data-position-fixed="true" data-position="left" data-display="overlay" >
                 <ul data-role="listview">
-                    <li data-icon="carat-r" id="usuario" ><img src="img/usuariok.png" alt="usuario" id="imgusuario"><h5 id="usua">Usuario</h5></li>
-                    <li data-icon="carat-r"><img alt="ubicacion" src="img/ubiUsuario.png"><h3 id="mprecision" >Aun no ubicado</h3></li>
-                    <li data-icon="carat-r"><img alt="conex" src="img/conex.png"><h3 id="mconex" >Tipo de Conex</h3></li>                    
-                    <li data-icon="carat-r">
-                        <div><img alt="reservorio" src="img/reservorio.png"><h3 id="mreservorio" >Reservorio</h3></div>
-                        <div><img alt="grifo" src="img/grifo.png"><h3 id="mgrifo" >Hidrante</h3></div>
-                        <div><img alt="valvula" src="img/valvula.png"><h3 id="mvalvula" >Valvula</h3></div>
+                    <li id="usuario" ><img src="img/usuariok.png" alt="usuario" id="imgusuario"><h5 id="usua">Usuario</h5></li>
+                    <li><img alt="ubicacion" src="img/ubiUsuario.png"><h3 id="mprecision" >Aun no ubicado</h3></li>
+                    <li><img alt="conex" src="img/conex.png"><h3 id="mconex" >Tipo de Conex</h3></li>                                        
                     
-                    </li>                    
-                   
-                </ul>
-            </div>
+                </ul>                  
+                <!-- div id="mreserv" class="relati" -->
+                    <ul data-role="listview"><li><a href="#">
+                    <div class="iconpanapal">
+                        <img alt="reservorio" src="img/tec/reservapo.png">
+                    </div>
+                    <span class="txtpanapal" id="txtReserv">Reservorios cerca a tu posición<br>a 9345, 9456 y 9567 metros</span>
+                            </a></li></ul>
+                <!-- /div -->
+                
+                <!-- div id="mhidrant" class="relati" -->
+                <ul data-role="listview"><li><a href="#">
+                    <div class="iconpanapal">
+                        <img alt="grifo" src="img/tec/hidrante.png">                        
+                    </div>
+                    <div>
+                        <span class="txtpanapal">Hidrantes cercanos a tu posición<br>a 345, 678 y 869 metros</span>
+                    </div>
+                            </a></li></ul>
+                <!-- /div -->
+                                
+                <!-- div id="mvalv" class="relati" -->
+                <ul data-role="listview"><li><a href="#">
+                    <div class="iconpanapal">
+                        <img alt="valvula" src="img/tec/valvula.png">
+                    </div>
+                            <div>
+                                <span class="txtpanapal">Valvulas cercanas a tu posición<br>a 234, 456 y 987 metros</span>
+                    </div>
+                </a></li></ul>
+                <ul data-role="listview"><li>
+                    <!-- div class="iconpanapal">
+                        <img alt="valvula" src="img/tec/valvula.png">
+                    </div>
+                            <div>
+                                <span class="txtpanapal">Valvulas cercanas a tu posición<br>a 234, 456 y 987 metros</span>
+                    </div -->
+                </li></ul>
+                </div>   
+                            
             <div data-role="content">
 
                 <!-- ul id="list_view" data-role="listview"  data-theme="a"></ul -->
