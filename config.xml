@@ -21,7 +21,7 @@
     <access origin="*.googleapis.com"/>
     <access origin="*.gstatic.com"/>
             
-    <preference name="phonegap-version" value="4.0.0" />
+    <preference name="phonegap-version" value="4.2.0" />
     <!-- preference name="phonegap-version" value="cli-5.2.0" / -->
     
     <preference name="permissions" value="none" />    
