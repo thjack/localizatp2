@@ -61,7 +61,8 @@
     <!-- gap:plugin name="org.apache.cordova.network-information" / -->    
     <!--cplugin name="cordova-plugin-network-information" source="npm" /c-->
     <!--gap:plugin name="org.apache.cordova.network-information" version="1.2.1" / -->
-    <gap:plugin name="cordova-plugin-network-information" source="npm" spec="1.0.1" />
+    <!-- gap:plugin name="cordova-plugin-network-information" source="npm" spec="1.0.1" / -->
+    <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
     <!-- plugin name="cordova-plugin-network-information" source="npm" spec="1.0.1" / -->
 
     <gap:plugin name="org.apache.cordova.splashscreen" />
