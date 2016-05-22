@@ -45,6 +45,10 @@
     <preference name="SplashScreen" value="screem" />
     <preference name="SplashScreenDelay" value="5000"/>
     
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" />    
+    <allow-navigation href="*" />
+    <allow-intent href="*" />
+    <access origin="*" />
 
 <gap:plugin name="cordova-plugin-battery-status" source="npm" />
 <gap:plugin name="cordova-plugin-dialogs" source="npm" />
@@ -141,12 +145,6 @@
       Otherwise, you can specify specific domains:  
     -->  
     <!--access origin="*"/ -->  
-      
-    
-    <gap:plugin name="cordova-plugin-whitelist" source="npm" />    
-    <allow-navigation href="*" />
-    <allow-intent href="*" />
-    <access origin="*" />
     
     <!--  
       <access origin="http://phonegap.com" />          - allow any secure requests to http://phonegap.com/  
