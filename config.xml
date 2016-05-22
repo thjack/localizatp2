@@ -54,7 +54,9 @@
 <gap:plugin name="cordova-plugin-dialogs" source="npm" />
 <gap:plugin name="cordova-plugin-inappbrowser" source="npm" />
 <gap:plugin name="cordova-plugin-media" source="npm" />
-<gap:plugin name="cordova-plugin-network-information" source="npm" />
+<!-- gap:plugin name="cordova-plugin-network-information" source="npm" / -->
+
+<gap:plugin name="org.apache.cordova.network-information" version="0.2.7" />
 <gap:plugin name="cordova-plugin-splashscreen" source="npm" />
 
 <gap:plugin name="cordova-plugin-camera" source="npm" />
