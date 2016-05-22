@@ -43,23 +43,23 @@
     <preference name="android-minSdkVersion" value="10" />
     <preference name="android-installLocation" value="auto" />
     <preference name="SplashScreen" value="screem" />
-    <preference name="SplashScreenDelay" value="10000"/>
+    <preference name="SplashScreenDelay" value="5000"/>
     
 
 <gap:plugin name="cordova-plugin-battery-status" source="npm" />
-<gap:plugin name="cordova-plugin-dialogs" version="1.1.1" source="npm" />
-<gap:plugin name="cordova-plugin-inappbrowser" version="1.0.1" source="npm" />
+<gap:plugin name="cordova-plugin-dialogs" source="npm" />
+<gap:plugin name="cordova-plugin-inappbrowser" source="npm" />
 <gap:plugin name="cordova-plugin-media" source="npm" />
-<gap:plugin name="cordova-plugin-network-information" version="1.2.0" source="npm" />
+<gap:plugin name="cordova-plugin-network-information" source="npm" />
 <gap:plugin name="cordova-plugin-splashscreen" source="npm" />
 
-<gap:plugin name="cordova-plugin-camera" version="1.2.0" source="npm" />
+<gap:plugin name="cordova-plugin-camera" source="npm" />
 <gap:plugin name="cordova-plugin-media-capture" source="npm" />
-<gap:plugin name="cordova-plugin-device" version="1.0.1" source="npm" />
+<gap:plugin name="cordova-plugin-device" source="npm" />
 <gap:plugin name="cordova-plugin-device-motion" source="npm" />
 <gap:plugin name="cordova-plugin-device-orientation" source="npm" />
-<gap:plugin name="cordova-plugin-file" version="3.0.0" source="npm" />
-<gap:plugin name="cordova-plugin-file-transfer" version="1.3.0" source="npm" />     
+<gap:plugin name="cordova-plugin-file" source="npm" />
+<gap:plugin name="cordova-plugin-file-transfer" source="npm" />     
 <gap:plugin name="cordova-plugin-vibration" source="npm" />     
 <gap:plugin name="cordova-plugin-geolocation" source="npm" />     
 <gap:plugin name="cordova-plugin-globalization" source="npm" />     
