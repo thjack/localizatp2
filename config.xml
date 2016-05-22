@@ -2,8 +2,8 @@
 <widget xmlns   = "http://www.w3.org/ns/widgets"
             xmlns:gap   = "http://phonegap.com/ns/1.0"
             id          = "com.phonegap.jvenegasperu.emapa1"
-            versionCode = "7" 
-            version     = "3.0.2" >
+            versionCode = "8" 
+            version     = "3.0.3" >
 
     <!-- versionCode is optional and Android only -->
 
@@ -39,8 +39,8 @@
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" />
     <preference name="disable-cursor" value="false" />
-    <!-- preference name="android-minSdkVersion" value="7" / -->
-    <preference name="android-minSdkVersion" value="10" />
+    <preference name="android-minSdkVersion" value="7" />
+    <!-- preference name="android-minSdkVersion" value="10" / -->
     <preference name="android-installLocation" value="auto" />
     <preference name="SplashScreen" value="screem" />
     <preference name="SplashScreenDelay" value="5000"/>
