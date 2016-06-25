@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+        <link rel="stylesheet" type="text/css" href="css/foto.css" />
+        <link rel="stylesheet" type="text/css" href="css/sweetalert.css" />
+        <title>Camara</title>
+        <script>
+			var conexion="http://land.sedalib.com.pe/foto/";
+		</script>
+    </head>
+    <body>
+        <div data-role="page" id="camara">   
+        <div id="foto"></div>
+        <div id="menu">
+            <div id="contenedorMenu">
+                <button id='btn-foto' onclick="capturePhoto()" title="Toma Una Foto"></button>
+                <button id='btn-galeria' onclick="getPhoto(pictureSource.PHOTOLIBRARY)" title="Cargar Foto Galeria"></button>
+                <button id='btn-enviar' onclick="enviarFoto(URIimg)" title="Enviar Imagen"></button>
+            </div>
+            
+            <div id="pie-pagina">
+                <center>
+                    <a id="btn-back" rel="external" onclick="l4()">
+                        <strong>Volver</strong>
+                    </a>
+                </center>
+            </div>
+        </div>
+        </div>
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="minify/js3.js"></script>
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/sweetalert.min.js"></script>        
+        <script>
+            swal("Incidencias", "Aqui Ud. podra enviar evidencias por el uso irregular de los servicios de Agua, Alcantarillado u otros vinculados con el servicio. El envio tendra caracter Anónimo");
+            longitud="";
+            latitud="";
+            app.initialize();
+        </script>
+    </body>
+</html>
