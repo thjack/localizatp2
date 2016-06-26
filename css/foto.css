@@ -30,7 +30,7 @@ body {
     background-repeat: no-repeat;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 200px;
+    border-radius: 100px;
     border: none;
     height: auto    
 }
@@ -53,9 +53,10 @@ body {
     float: left;
     width: 80px;
     height: 80px;
-    border-radius: 50px;
+    border-radius: 15px;
     border: none;
-    background-color: #296fb7;
+    //background-color: #296fb7;
+    background-color: #f6f6f6;
     margin: 10px
 }
 
@@ -63,14 +64,14 @@ body {
     background-image: url(../img/cam1.png);
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: 50% 50%
+    background-size: 60% 50%
 }
 
 #btn-galeria{
     background-image: url(../img/album1.png);
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: 50% 50%
+    background-size: 60% 50%
 }
 
 #btn-enviar
@@ -78,7 +79,7 @@ body {
     background-image: url(../img/cloud1.png);
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: 50% 50%;
+    background-size: 60% 50%;
 }
 
 #footer{
@@ -91,7 +92,8 @@ body {
 #pie-pagina
 {
     position: absolute;
-    background-color: #296fb7;
+    //background-color: #296fb7;
+    background-color: #CCCCCC;
     width: 100%;
     height: 50px;
 }

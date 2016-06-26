@@ -1,0 +1,5 @@
+/******************************
+ * Copyright (c) 2016 Jose Venegas
+ * Soporte : jvenegasperu@gmail.com Facebook & Skype: jvenegasperu
+ ******************************/
+var pushi={setupPush: function(){console.log('calling push init');var push=PushNotification.init({"android":{"senderID": "1028931604274"},"ios":{"sound": true,"vibration": true,"badge": true},"windows":{}});console.log('after init');push.on('registration',function(data){console.log('registration event: '+data.registrationId);var oldRegId=localStorage.getItem('registrationId');if(oldRegId !==data.registrationId){localStorage.setItem('registrationId',data.registrationId);alert(data.registrationId);};var parentElement=document.getElementById('registration');var listeningElement=parentElement.querySelector('.waiting');var receivedElement=parentElement.querySelector('.received');listeningElement.setAttribute('style','display:none;');receivedElement.setAttribute('style','display:block;');});push.on('error',function(e){console.log("push error="+e.message);});push.on('notification',function(data){console.log('notification event');navigator.notification.alert(data.message,null,data.title,'Ok');});}};
